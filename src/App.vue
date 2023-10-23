@@ -1,9 +1,12 @@
 <template>
   <div id="app">
+    <h1>Ma liste de tâches</h1>
     <ul v-if="afficher">
       <li v-for="(tache, index) in taches" :key="index">
-        <my-task :text="tache.nom" :done="tache.fait" @remove="onTaskRemove(index)" @check="onTaskCheck(index)">
-        </my-task>
+        <ul>
+          <my-task v-bind:text="tache.nom" v-bind:done="tache.fait" @remove="onTaskRemove(index)" v-on:check="onTaskCheck(index, $event)">
+          </my-task>
+        </ul>
       </li>
     </ul>
     <button v-on:click="afficher = true" v-if="!afficher" class="button">
@@ -47,8 +50,9 @@ export default {
     onTaskRemove(index) {
       this.taches.splice(index, 1);
     },
-    onTaskCheck(index) {
+    onTaskCheck(index, event) {
       this.taches[index].fait = !this.taches[index].fait;
+      console.log('check event: ', event);
     }
   }
 }
