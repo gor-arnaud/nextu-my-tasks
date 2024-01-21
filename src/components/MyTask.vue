@@ -40,4 +40,8 @@ export default {
     display: grid;
     grid-template-columns: 1fr auto auto;
 }
+.button.is-danger.is-outlined:hover {
+    background-color: #DC143C; 
+    color: white; 
+}
 </style>
