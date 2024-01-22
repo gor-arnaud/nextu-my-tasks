@@ -1,32 +1,43 @@
 <template>
     <div class="bilan">
-      Vous avez terminé <span id="TachesFini"> {{ TachesFini }}</span> tâche dans votre liste qui compte<span v-if="TachesFini !== 1">s</span> {{ TachesTotal }}.
+      <p>
+        Vous avez terminé
+        <span :class="{ 'text-success': TachesFini > 0 }">
+          {{ TachesFini }}
+        </span>
+        tâche{{ TachesFini !== 1 ? 's' : '' }} sur un total de {{ TachesTotal }}.
+      </p>
     </div>
-</template>
-
-<script>
-export default {
+  </template>
+  
+  <script>
+  export default {
     name: 'PhrasesTaches',
     props: {
-        taches: {
-            type: Array,
-            required: true
-        }
+      taches: {
+        type: Array,
+        required: true,
+      },
     },
     computed: {
-        TachesTotal() {
-            return this.taches.length;
-        },
-        TachesFini() {
-            return this.taches.filter(tache => tache.fait).length;
-        }
-    }
-}
-</script>
-<style>
+      TachesTotal() {
+        return this.taches.length;
+      },
+      TachesFini() {
+        return this.taches.filter((tache) => tache.fait).length;
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .text-success {
+    color: green;
+    font-weight: bold;
+
+  }
+
 #TachesFini{
     color: #48c78e;
-    font-weight: 500;
-
 }
 </style>
