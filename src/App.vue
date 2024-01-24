@@ -9,6 +9,7 @@
         </ul>
       </li>
     </ul>
+    <exo-num :taches="taches"></exo-num>
     <button v-on:click="afficher = true" v-if="!afficher" class="button">
       Afficher vos tâches
     </button>
@@ -24,13 +25,15 @@
 </template>
 
 <script>
+import ExoNum from './components/ExoNum.vue';
 import MyTask from './components/MyTask.vue';
 
 export default {
   name: 'App',
   components: {
-    MyTask
-  },
+    MyTask,
+    ExoNum
+},
   data() {
     return {
       taches: [
